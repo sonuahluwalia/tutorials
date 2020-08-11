@@ -1,5 +1,6 @@
 package com.baeldung.ex.mappingexception.cause2.persistence.model;
 
+
 import java.io.Serializable;
 
 import javax.persistence.Entity;
