@@ -14,7 +14,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="multiStatementRollback" author="baeldung">
+     <changeSet id="multiStatementRollback" author="baeldung">
         <createTable tableName="baeldung_tutorial2">
             <column name="id" type="int"/>
             <column name="heading" type="varchar(36)"/>
@@ -64,6 +64,5 @@
         </createTable>
         <rollback/>
     </changeSet>
-
 
 </databaseChangeLog>

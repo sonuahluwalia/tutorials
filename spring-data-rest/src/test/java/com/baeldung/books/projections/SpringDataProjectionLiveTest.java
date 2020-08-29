@@ -65,7 +65,7 @@ public class SpringDataProjectionLiveTest {
         assertEquals(200, response.getStatusCode());
         assertFalse(response.asString().contains("isbn"));
         assertTrue(response.asString().contains("authorCount"));
-        // System.out.println(response.asString());
+         System.out.println(response.asString());
     }
 
     @Test
@@ -85,6 +85,6 @@ public class SpringDataProjectionLiveTest {
         assertEquals(200, response.getStatusCode());
         assertFalse(response.asString().contains("isbn"));
         assertTrue(response.asString().contains("authorCount"));
-        System.out.println(response.asString());
+//        System.out.println(response.asString());
     }
 }
