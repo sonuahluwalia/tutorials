@@ -13,15 +13,16 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import com.baeldung.controller.config.WebConfig;
+import com.baeldung.controller.optionalpathvars.Article;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = { WebConfig.class })
-public class ArticleViewerWithMapParamIntegrationTest {
+public class ArticleViewerControllerWithRequiredAttributeIntegrationTest {
 
     @Autowired
     private WebApplicationContext wac;
-
+ 
     private MockMvc mockMvc;
 
     @Before
@@ -30,26 +31,24 @@ public class ArticleViewerWithMapParamIntegrationTest {
     }
 
     @Test
-    public void givenPathVarsMapParam_whenIdPathVariableIsPassed_thenResponseOK() throws Exception {
-        
-        int articleId = 5;
+    public void givenRequiredAttributeIsFalse_whenIdPathVariableIsPassed_thenResponseOK() throws Exception {
+    
+        int articleId = 154;
         
         this.mockMvc
-            .perform(MockMvcRequestBuilders.get("/mapParam/article/{id}", articleId))
+            .perform(MockMvcRequestBuilders.get("/requiredAttribute/article/{id}", articleId))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(articleId));
-               
-    }
-
-    @Test
-    public void givenPathVarsMapParam_whenIdPathVariableIsNotPassed_thenResponseOK() throws Exception {
                 
+    }
+    
+    @Test
+    public void givenRequiredAttributeIsFalse_whenIdPathVariableIsNotPassed_thenResponseOK() throws Exception {
+            
         this.mockMvc
-            .perform(MockMvcRequestBuilders.get("/mapParam/article"))
+            .perform(MockMvcRequestBuilders.get("/requiredAttribute/article"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(Article.DEFAULT_ARTICLE.getId()));
-               
+                
     }
-
-    
 }

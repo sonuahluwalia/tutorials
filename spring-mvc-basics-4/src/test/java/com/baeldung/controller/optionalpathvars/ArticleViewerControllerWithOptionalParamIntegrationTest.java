@@ -13,11 +13,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import com.baeldung.controller.config.WebConfig;
+import com.baeldung.controller.optionalpathvars.Article;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = { WebConfig.class })
-public class ArticleViewerControllerWithRequiredAttributeIntegrationTest {
+public class ArticleViewerControllerWithOptionalParamIntegrationTest {
 
     @Autowired
     private WebApplicationContext wac;
@@ -30,22 +31,22 @@ public class ArticleViewerControllerWithRequiredAttributeIntegrationTest {
     }
 
     @Test
-    public void givenRequiredAttributeIsFalse_whenIdPathVariableIsPassed_thenResponseOK() throws Exception {
+    public void givenOPtionalParam_whenIdPathVariableIsPassed_thenResponseOK() throws Exception {
     
         int articleId = 154;
         
         this.mockMvc
-            .perform(MockMvcRequestBuilders.get("/requiredAttribute/article/{id}", articleId))
+            .perform(MockMvcRequestBuilders.get("/optionalParam/article/{id}", articleId))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(articleId));
                 
     }
     
     @Test
-    public void givenRequiredAttributeIsFalse_whenIdPathVariableIsNotPassed_thenResponseOK() throws Exception {
+    public void givenOPtionalParam_whenIdPathVariableIsNotPassed_thenResponseOK() throws Exception {
             
         this.mockMvc
-            .perform(MockMvcRequestBuilders.get("/requiredAttribute/article"))
+            .perform(MockMvcRequestBuilders.get("/optionalParam/article"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(Article.DEFAULT_ARTICLE.getId()));
                 
